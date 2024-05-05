@@ -20,4 +20,5 @@ urlpatterns = [
     path('employees/employee_create/',views.employee_create,name='employee_create'),
     path('employees/user_create/',views.user_create,name='user_create'),
     path('profile/',views.profile,name='profile'),
+    path('profile/update',views.profile_update,name='profile_update'),
 ]

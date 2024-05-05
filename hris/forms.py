@@ -1,5 +1,5 @@
 from django import forms
-from .models import employee_detail,CustomUser,department,Leave
+from .models import employee_detail,CustomUser,department,Leave, Profile
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -61,3 +61,7 @@ class LeaveApprovalForm(forms.ModelForm):
         model= Leave
         fields=['status']
     
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model=Profile
+        fields='__all__'

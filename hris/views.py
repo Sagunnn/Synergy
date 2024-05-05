@@ -3,8 +3,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
-from .models import department,employee_detail,CustomUser,Leave
-from .forms import EmployeeForm,UserForm,DepartmentForm,LeaveApplicationForm,LeaveApprovalForm
+from .models import department,employee_detail,CustomUser,Leave,Profile
+from .forms import EmployeeForm,UserForm,DepartmentForm,LeaveApplicationForm,LeaveApprovalForm, ProfileForm
 from django.core.exceptions import ObjectDoesNotExist,PermissionDenied
 import traceback
 from datetime import date
@@ -26,14 +26,32 @@ def profile(request):
             for obj in objs:
                 print('Employee username:', obj.user.username)
             obj = objs.first()
+            info=Profile.objects.filter(empId=obj.empId)
             if obj:
-                return render(request, './components/profile.html', {'obj': obj})
+                return render(request, './components/profile.html', {'obj': obj,'info': info})
             else:
                 print('No matching employee_detail object for the user')
                 return redirect('dashboard')
         except employee_detail.DoesNotExist:
             print('does not exist')
             return redirect('dashboard')
+
+@login_required
+def profile_update(request):
+    if request.user.is_authenticated:
+        update_profile = profile.objects.filter(empId=request.user.employee_detail.empId)
+        if request.method == "POST":
+            form = ProfileForm(request.POST, instance=update_profile)
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Profile updated successfully")
+                return redirect('profile')
+        else:
+            form = ProfileForm(instance=update_profile)
+        return render(request, "./components/update_profile.html", {'form': form})
+    else:
+        messages.error(request, "Not authorized to update")
+        return redirect('profile')
 
 
 def login_user(request):

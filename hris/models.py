@@ -124,7 +124,7 @@ class Leave(models.Model):
     def get_leave_type_display(self):
         return dict(self.LEAVE_TYPE_CHOICES)[self.leave_type]
     
-class profile(models.Model):
+class Profile(models.Model):
     empId=models.ForeignKey(employee_detail,on_delete=models.CASCADE)
     hobbies = models.CharField(max_length=100)
     skills= models.CharField(max_length=100)
