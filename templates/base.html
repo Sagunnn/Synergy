@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+        <link rel="stylesheet" href="{% static 'css/alert.css' %}">
+        <link rel="stylesheet" href="{% static 'css/table.css' %}">
+        <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+        <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+        
+        <script src="https://kit.fontawesome.com/52d2e4e65f.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    </head>
+    <body>
+        <header class="header">
+            
+            {% block navbar %}
+                
+            {% endblock navbar %}
+                
+            
+        </header>
+        <section class="sidebar1">
+            {% include './components/navbar.html' %}
+        </section>
+        <main class="main">
+            <div class="messages">
+                {% if messages %}
+                <div class="alert success">
+                    <span class="alertClose">X</span>
+                    <span class="alertText">{% for message in messages %}
+                        {{message}}
+                        {% endfor %}<br/>
+                    <br class="clear"/></span>
+                  </div>
+                  {% endif %}
+            </div>
+            {% block content %}
+            {% endblock %}   
+        </main>
+    </body>
+</html>

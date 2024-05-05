@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class='card-form'>
+    <table>
+    <form method="post" action="" >
+    {% csrf_token %}
+    <table>
+        {% for field in form %}
+        <tr>
+          <th>{{ field.label_tag }}</th>
+          <td>{{ field }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      <button type="submit" class='button-9' value="Submit">Submit</button>
+    </form>
+</table>
+</div>
+{% endblock%}
+    

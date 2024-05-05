@@ -1,0 +1,186 @@
+
+
+/* CSS */
+.button-9 {
+  appearance: button;
+  backface-visibility: hidden;
+  background-color: rgb(101, 168, 0);
+  border-radius: 6px;
+  border-width: 0;
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
+  font-size: 100%;
+  height: 44px;
+  line-height: 1.15;
+  
+  margin-bottom:2rem;
+  outline: none;
+  overflow: hidden;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transform: translateZ(0);
+  transition: all .2s,box-shadow .08s ease-in;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+}
+
+.button-9:disabled {
+  cursor: default;
+}
+
+.button-9:focus {
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
+}
+
+.card-form {
+  box-sizing: border-box; /* Add this line to include padding and border in the specified width */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+  background-color: whitesmoke;
+  width:fit-content;
+  text-align: left;
+  border-radius: 16px;
+  margin: 2rem auto; /* Add margin to center the form and create space around it */
+  overflow: hidden;
+  padding: 2rem;
+  margin: 4rem;
+  align-self: center;
+  
+}
+
+.card-form form{
+  display: inline;
+}
+
+.card-form text {
+  padding: 2px; /* Add padding to create space around the content */
+  margin: 2px; /* Add margin to adjust the horizontal positioning of the content */
+}
+
+
+.card-form input{
+  margin:2rem;
+}
+.card-form input[type=text] {
+  display: inline-block;
+  padding: 12px 10px;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+}
+.card-form label{
+
+  padding: 12px 20px;
+  margin: 2rem;
+  margin-left:0.5rem;
+  margin-top: 5rem ;
+  box-sizing: border-box;
+}
+
+.card-form input[type="date"]{
+  display: inline-block;
+  padding: 12px 10px;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+}
+
+.card-form input[type="checkbox"] {
+  /* Hide the default checkboxes */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* Create a custom checkbox */
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px; /* Adjust this value as needed */
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+/* Style the custom checkbox when it is checked */
+.card-form input[type="checkbox"]:checked {
+  background-color: rgb(101, 168, 0);
+}
+
+.card-form input[type="email"]{
+  display: inline-block;
+  padding: 12px 10px;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+}
+
+.card-form input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* Create a custom checkbox */
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+
+}
+.card-form label{
+  font-size: 1.1rem;
+  font-weight: bolder;
+}
+
+.card-form input[type="radio"]:checked {
+  background-color: rgb(101, 168, 0);
+}
+
+.card-form select{
+  display: inline-block;
+  padding: 12px 10px;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  width: 16rem;
+}
+
+.card-form input[type="text"]{
+  display: inline-block;
+  padding: 12px 10px;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  width: 16rem;
+}
+.card-form input[type="password"]{
+  display: inline-block;
+  padding: 12px 10px;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  width: 16rem;
+}
+
+.card-form label{
+  font-size: 1.1rem;
+  font-weight: bolder;
+}

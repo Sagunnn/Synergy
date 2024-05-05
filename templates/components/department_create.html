@@ -1,0 +1,17 @@
+
+{% extends 'base.html' %}
+{% block navbar %}
+    <ul name="create" style="font-family: poppins, sans-serif; font-size: 0.88rem;">
+        <li><a href="{%url 'departments'%}" {% if  request.path == '/departments/' %}class="active"{% endif %}><h3>Departments</h3></a></li>
+        <li><a href="{% url 'department_create' %}" {% if request.path == '/departments/department_create/' %}class="active"{% endif %}><h3>Department Add</h3></a></li>
+    </ul>
+{% endblock navbar %}
+{% block content %}    
+<div class="card-form">
+<form method="post">
+{% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" value="Submit" class='button-9'>Add Department</button>
+</form>
+</div>
+{% endblock %}

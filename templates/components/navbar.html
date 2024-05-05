@@ -1,0 +1,38 @@
+{% load static %}
+<div id="container_nav">
+    <aside>
+        <div class="top">
+            <img src="{% static 'img/logo.png' %}" >
+        </div>
+        <div class="sidebar0">
+            <a href="{% url 'dashboard' %}" {% if request.path == '/dashboard/' %}class="active"{% endif %}>
+                <span class="material-symbols-outlined">grid_view</span>
+                    <h2>Dashboard</h2>
+            </a>
+            <a href="{%url 'profile'%}" {% if request.path == '/profile/' %}class="active"{% endif %}>
+                <span class="material-symbols-outlined">person</span>
+                    <h2>Profile</h2>
+            </a>    
+            <a href="{% url 'employees' %}" {% if '/employees/' in request.path %}class="active"{% endif %}>
+                <span class="material-symbols-outlined">badge</span>
+                    <h2>Employees</h2>
+            </a>    
+            <a href="{% url 'departments' %}"{% if '/departments/' in request.path %}class="active"{% endif %}>
+                <span class="material-symbols-outlined">spoke</span>
+                    <h2>Departments</h2>
+            </a>    
+            <a href="{% url 'leaves' %}"{% if request.path == '/leaves/' %}class="active"{% endif %}>
+                <span class="material-symbols-outlined">pending_actions</span>
+                    <h2>Leaves</h2>
+            </a>
+            <a href="{% url 'leave_apply' %}"{% if request.path == '/leave_apply/' %}class="active"{% endif %}>
+                <span class="material-symbols-outlined">edit_calendar</span>
+                    <h2>Apply for leave</h2>
+            </a>       
+            <a href="{%url 'logout'%}">
+                <span class="material-symbols-outlined">logout</span>
+                    <h2>Logout</h2>
+            </a>        
+        </div>
+    </aside>
+</div>

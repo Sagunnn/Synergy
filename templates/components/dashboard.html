@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<style>
+    .main-x{
+        background-color: rgb(228, 228, 228);
+        padding:25px;
+        grid-area: main;
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap:20px;
+        grid-template-areas: 
+        "c1 c2 c3"
+        "c4 c4 c5"
+        "c4 c4 c6";
+    }
+    
+    .order-card {
+        color: #fff;
+    }
+    
+    .bg-c-blue {
+        background: linear-gradient(45deg,#4099ff,#73b4ff);
+    }
+    
+    .bg-c-green {
+        background: linear-gradient(45deg,#2ed8b6,#59e0c5);
+    }
+    
+    .bg-c-yellow {
+        background: linear-gradient(45deg,#FFB64D,#ffcb80);
+    }
+    
+    .bg-c-pink {
+        background: linear-gradient(45deg,#FF5370,#ff869a);
+    }
+    
+    
+    .card {
+        border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+        box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+        border: none;
+        margin-bottom: 30px;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .card .card-block {
+        padding: 25px;
+    }
+    
+    .order-card i {
+        font-size: 26px;
+    }
+    
+    .f-left {
+        float: left;
+    }
+    
+    .f-right {
+        float: right;
+    }
+</style>
+<div class="container">
+    {%if messages %}
+            {%for message in messages%}
+                <div class="alert alert-primary" role="alert">
+                {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}    
+    <div class="main-x">
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-blue order-card">
+                <div class="card-block">
+                    <h2 class="m-b-20">Employees</h2>
+                    <h1 class="text-right"><span class="material-symbols-outlined">
+                        badge
+                        </span><span>{{employee_count}}</span></h1>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-green order-card">
+                <div class="card-block">
+                    <h2 class="m-b-20">Departments</h2>
+                    <span class="material-symbols-outlined">
+                        keyboard_alt
+                        </span><span>{{department_count}}</span></h1>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-yellow order-card">
+                <div class="card-block">
+                    <h2 class="m-b-20">On Leave</h2>
+                    <span class="material-symbols-outlined">
+                        holiday_village
+                        </span><span>{{leaves_count}}</span></h1>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-pink order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">Orders Received</h6>
+                    <h2 class="text-right"><i class="fa fa-credit-card f-left"></i><span>486</span></h2>
+                    <p class="m-b-0">Completed Orders<span class="f-right">351</span></p>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+{% endblock content %}

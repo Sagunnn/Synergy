@@ -1,0 +1,36 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}    
+<div class="card-form" style="font-size:15px;">
+<table>
+    <tr>
+        <td><h3>Name:  {{leave_instance.empId.get_full_name}}</h3></td>
+        <td rowspan=6> <img src="{{leave_instance.empId.profile_picture.url}}" class="profile_img" ></td>
+    </tr>
+    <tr>
+        <td><h3>Reason:  {{leave_instance.reason}}</h3></td>
+    </tr>
+    <tr>
+        <td><h3>Leave Type:  {{leave_instance.get_leave_type_display}}</h3></td>
+    </tr>
+    <tr>
+        <td><h3>Start Date:  {{leave_instance.start_date}}</h3></td>
+    </tr>
+    <tr>
+        <td><h3>End Date:  {{leave_instance.end_date}}</h3></td>
+    </tr>
+    </tr>
+    <td><h3>Duration:  {{leave_instance.duration}}</h3></td>
+    </tr>
+    <tr>
+<form method="post">
+{% csrf_token %}
+    <td>{{form.as_p}}</td>
+</tr>
+
+</table>
+    <button type="submit" class="button-9">Change Status</button>
+</form>
+</div>
+{% endblock %}

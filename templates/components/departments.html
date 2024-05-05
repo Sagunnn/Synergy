@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+    {% if request.user.role == 'ADMIN' or request.user.role == 'HR' %} 
+
+    
+    <ul name="create" style="font-family: poppins, sans-serif; font-size: 0.88rem;">
+        <li><a href="{%url 'departments'%}" {% if  request.path == '/departments/' %}class="active"{% endif %}><h3>Departments</h3></a></li>
+        <li><a href="{% url 'department_create' %}" {% if request.path == '/departments/department_create/' %}class="active"{% endif %}><h3>Department Add</h3></a></li>
+    </ul>
+    {% endif %}
+{% endblock navbar %}
+    
+{% block content %}    
+<h1>Departments</h1>
+<table id='tb'>
+    <tr>
+        <th>S.N</th>
+        <th>Department</th>
+        {% if user.role == "ADMIN" or user.role == "HR"%} 
+        <th colspan="2">Actions</th>
+        {% endif %}
+    </tr>    
+    <tr>
+    {% for department in objs %}
+        <td>{{forloop.counter}}</td>
+        <td>{{ department.departmentName }}</td>
+        
+        {% if user.role == "ADMIN" or user.role == "HR" %}          
+        <td>
+            <a href= "{% url 'update_department' department.departmentName %}">Update</a>
+        </td>
+        <td>
+            <form method="post" action="{% url 'departments' %}">
+                {% csrf_token %}
+                <button type="submit" name="Delete" value="{{ department.departmentName }}">Delete</button>
+            </form>
+        </td>
+        {% endif %}
+        </tr>
+    {% endfor %}
+</table>
+{% endblock content %}

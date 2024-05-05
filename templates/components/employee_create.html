@@ -1,0 +1,24 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block navbar %}
+    {% if request.user.role == "ADMIN" or request.user.role == "HR" %}
+    <ul name="create" style="font-family: poppins, sans-serif; font-size: 0.88rem;">
+        <li><a href="{%url 'employees'%}" {% if  request.path == '/employees/' %}class="active"{% endif %}><h3>Employees</h3></a></li>
+        <li><a href="{% url 'employee_create'%}" {% if '/employee_create/' in request.path %}class="active"{% endif %}><h3>Create Employee</h3></a></li>
+        <li><a href="{% url 'user_create'%}"{% if '/user_create/' in request.path %}class="active"{% endif %}><h3>Create User</h3></a></li>
+    </ul>
+    {% endif %}
+{% endblock navbar %}
+{% block content %}    
+<form method="post" class="card-form" enctype="multipart/form-data">
+{% csrf_token %}
+    {{form.as_p}}
+    {% if form.instance.profile_picture %}
+        <img src="{{ form.instance.profile_picture.url }}" alt="Profile Picture" class="profile_img">
+    {% else %}
+        <img src="{% static 'img/default_profile.jpg' %}" alt="Default Profile Picture" class="profile_img">
+    {% endif %}
+    <button type="submit" value="Submit" class='button-9'>Add Employee</button>
+</form>
+{% endblock %}

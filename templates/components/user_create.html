@@ -1,0 +1,31 @@
+
+{% extends 'base.html' %}
+{% block navbar %}
+    {% if request.user.role == "ADMIN" or request.user.role == "HR" %}
+    <ul name="create" style="font-family: poppins, sans-serif; font-size: 0.88rem;">
+        <li><a href="{%url 'employees'%}" {% if  request.path == '/employees/' %}class="active"{% endif %}><h3>Employees</h3></a></li>
+        <li><a href="{% url 'employee_create'%}" {% if '/employee_create/' in request.path %}class="active"{% endif %}><h3>Create Employee</h3></a></li>
+        <li><a href="{% url 'user_create'%}"{% if '/user_create/' in request.path %}class="active"{% endif %}><h3>Create User</h3></a></li>
+    </ul>
+    {% endif %}
+{% endblock navbar %}
+{% block content %} 
+<div class="card-form">
+    <h2>Create User</h2>
+    <form method="post" action="" >
+        {% csrf_token %}
+        <table>
+            {% for field in form %}
+            <tr>
+              <th>{{ field.label_tag }}</th>
+              <td>{{ field }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+          <button type="submit" class='button-9' value="Submit">Submit</button>
+        </form>
+        
+</div>   
+
+
+{% endblock %}

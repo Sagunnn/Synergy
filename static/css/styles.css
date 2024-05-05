@@ -1,0 +1,39 @@
+body{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 60px 1fr;
+    grid-template-areas: 
+    "side header"
+    "side main";
+}
+.top{
+    margin-bottom:1rem;
+    margin-left:2rem;
+    margin-top: 2rem;
+    align-items: center;
+}
+.header {
+    background: linear-gradient(to right,rgb(141, 226, 13), rgb(74, 122, 1));
+    grid-area: header;
+    margin:0rem;
+    height: 3.7rem;
+}
+
+.main{
+    grid-area:main;
+    overflow-y: auto;
+}
+
+.main .card-form{
+    display:grid;
+    justify-content: center;
+    margin-left: 25%;
+}
+.profile_img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-left: 2rem;
+}
+

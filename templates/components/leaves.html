@@ -1,0 +1,58 @@
+
+{% extends 'base.html' %}
+
+
+{% block navbar %}
+<ul name="create" style="font-family: poppins, sans-serif; font-size: 0.88rem;">
+    <li><a href="?status=pending" {% if  request.GET.status == "pending"  %}class="active"{% endif %}><h3>Pending</h3></a></li>
+    <li><a href="?status=approved" {% if request.GET.status == 'approved' %}class="active"{% endif %}><h3>Approved</h3></a></li>
+    <li><a href="?status=rejected"{% if request.GET.status == 'rejected' %}class="active"{% endif %}><h3>Rejected</h3></a></li>
+    <li><a href="?status=archived"{% if request.GET.status == 'archived' %}class="active"{% endif %}><h3>Archived</h3></a></li>
+  </ul> 
+{% endblock navbar %}
+    
+{% block content %}   
+
+{%if messages %}
+                {%for message in messages%}
+                <div class="alert alert-danger" style="font-size:20px;"role="alert">
+                  {{message}}.
+                </div>
+                {% endfor %}
+            {% endif %} 
+<table id="tb">
+    <thead>
+        <tr>
+           <th>Leave ID</th>
+            <th>Username</th>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Department</th>
+            <th>Start_Date</th>
+            <th>End_Date</th>
+            <th>Reason</th>
+            <th>Status</th>
+            {% if user.role == "ADMIN" or user.role == "HR" %}  
+            <th colspan="2"> Actions </th>
+            {% endif %}
+        </tr>
+        {% for leaves in objs %}
+        
+        {% if leaves.empId.user == request.user or request.user.role == "ADMIN" or request.user.role == "HR" or request.user.role == "MANAGER" %}
+        <tr>
+            <td><a href= "{% url 'leave_approval' leaves.leave_id %}">{{leaves.leave_id}}</a></td>
+            <td>{{leaves.empId.user.username}}</td>
+            <td>{{leaves.empId.get_full_name}}</td>
+            <td>{{leaves.empId.positionName}}</td>
+            <td>{{leaves.empId.departmentName}}</td>
+            <td>{{leaves.start_date}}</td>
+            <td>{{leaves.end_date}}</td>
+            <td>{{leaves.reason}}</td>
+            <td>{{leaves.status}}</td>
+            {%if request.user.role == 'ADMIN' or request.user.role == 'HR'%}
+            <td><a href= "{% url 'leave_approval' leaves.leave_id %}">Change Status</a></td>
+            {% endif %}
+        </tr>
+        {% endif %}
+        {% endfor %}
+{% endblock%}

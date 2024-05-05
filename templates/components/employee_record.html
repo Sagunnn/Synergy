@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="main-profile">
+    <h2>IDENTITY</h2>
+    <div class="card-profile">
+        <div class="card-body">
+            <i class="fa fa-pen fa-xs edit"></i>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                        <td>:</td>
+                        <td>{{employee_record.get_full_name}}</td>
+                        <td rowspan="6" colspan="2"><img src="{{ employee_record.profile_picture.url }}" alt="Profile Picture" class="profile_img"></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>:</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>:</td>
+                        <td>{{employee_record.address}}</td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td>:</td>
+                        <td>{{employee_record.phone_number}}</td>
+                    </tr>
+                    <tr>
+                        <td>Position</td>
+                        <td>:</td>
+                        <td><b>{{employee_record.positionName}}</b></td>
+                    </tr>
+                    <tr>
+                        <td>Department</td>
+                        <td>:</td>
+                        <td>{{employee_record.departmentName}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

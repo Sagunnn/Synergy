@@ -1,0 +1,13 @@
+
+{% extends 'base.html' %}
+
+{% block content %}    
+
+<div class="card-form">
+<form method="post">
+{% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" value="Submit" class='button-9'>Update Department</button>
+</form>
+</div>
+{% endblock %}
