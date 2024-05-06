@@ -125,7 +125,7 @@ class Leave(models.Model):
         return dict(self.LEAVE_TYPE_CHOICES)[self.leave_type]
     
 class Profile(models.Model):
-    empId=models.ForeignKey(employee_detail,on_delete=models.CASCADE)
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
     hobbies = models.CharField(max_length=100)
     skills= models.CharField(max_length=100)
     about=models.CharField(max_length=500)

@@ -26,7 +26,8 @@ def profile(request):
             for obj in objs:
                 print('Employee username:', obj.user.username)
             obj = objs.first()
-            info=Profile.objects.filter(empId=obj.empId)
+            infos=Profile.objects.filter(user=request.user)
+            info=infos.first()
             if obj:
                 return render(request, './components/profile.html', {'obj': obj,'info': info})
             else:
@@ -39,15 +40,22 @@ def profile(request):
 @login_required
 def profile_update(request):
     if request.user.is_authenticated:
-        update_profile = profile.objects.filter(empId=request.user.employee_detail.empId)
+        try:
+            update_profile = Profile.objects.get(user=request.user)
+        except Profile.DoesNotExist:
+            update_profile = None
+
         if request.method == "POST":
             form = ProfileForm(request.POST, instance=update_profile)
             if form.is_valid():
-                form.save()
+                profile = form.save(commit=False)
+                profile.user = request.user
+                profile.save()
                 messages.success(request, "Profile updated successfully")
                 return redirect('profile')
         else:
             form = ProfileForm(instance=update_profile)
+        
         return render(request, "./components/update_profile.html", {'form': form})
     else:
         messages.error(request, "Not authorized to update")

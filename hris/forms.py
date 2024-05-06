@@ -64,4 +64,4 @@ class LeaveApprovalForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model=Profile
-        fields='__all__'
+        fields=['hobbies','skills','about']
