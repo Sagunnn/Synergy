@@ -92,6 +92,14 @@
   border: 2px solid #ccc;
   border-radius: 8px;
 }
+.card-form input[type="time"]{
+  display: inline-block;
+  padding: 12px 10px;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+}
 
 .card-form input[type="checkbox"] {
   /* Hide the default checkboxes */
@@ -162,6 +170,15 @@
 }
 
 .card-form input[type="text"]{
+  display: inline-block;
+  padding: 12px 10px;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  width: 16rem;
+}
+.card-form textarea{
   display: inline-block;
   padding: 12px 10px;
   margin: 8px;

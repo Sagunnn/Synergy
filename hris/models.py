@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 from django.utils.crypto import get_random_string
 import uuid
 from django import forms
+import datetime
 
 
 class CustomUser(AbstractUser):
@@ -130,4 +131,19 @@ class Profile(models.Model):
     skills= models.CharField(max_length=100)
     about=models.CharField(max_length=500)
     
-    
+
+class Attendance(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    date = models.DateField()
+    time_in = models.TimeField()
+    time_out = models.TimeField()
+    duration = models.DurationField(null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        time1 = datetime.datetime.strptime(self.time_in,'%H:%M')
+        time2 = datetime.datetime.strptime(self.time_out,'%H:%M')
+        difference = time2-time1
+        print (difference)
+        self.duration=difference
+        super().save(*args, **kwargs)

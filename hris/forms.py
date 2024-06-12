@@ -1,5 +1,5 @@
 from django import forms
-from .models import employee_detail,CustomUser,department,Leave, Profile
+from .models import employee_detail,CustomUser,department,Leave, Profile,Attendance
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -8,7 +8,7 @@ class EmployeeForm(forms.ModelForm):
     empId = forms.CharField()    
     firstName = forms.CharField()
     lastName = forms.CharField()
-    midName = forms.CharField()
+    midName = forms.CharField(required=False)
     birthDate= forms.DateField(widget=DateInput)
     employedDate= forms.DateField(widget=DateInput)
     sex = forms.ChoiceField(widget=forms.RadioSelect, choices=employee_detail.GENDER)
@@ -17,6 +17,9 @@ class EmployeeForm(forms.ModelForm):
         model = employee_detail
         fields=['user','empId','firstName', "lastName",'midName','birthDate', 'employedDate','sex','phone_number','address','departmentName','positionName','profile_picture']
     
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['user'].queryset = CustomUser.objects.filter(employee_detail__isnull=True)
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
@@ -62,6 +65,28 @@ class LeaveApprovalForm(forms.ModelForm):
         fields=['status']
     
 class ProfileForm(forms.ModelForm):
+    hobbies=forms.CharField(required=False)
+    skills=forms.CharField(required=False)
+    about = forms.ChoiceField(
+        choices=[
+            ('DND', 'Do not disturb'),
+            ('Busy', 'Busy'),
+            ('Available', 'Available'),
+            ('On Leave', 'On leave')
+        ],
+        label='Status',
+        required=True
+    )
     class Meta:
         model=Profile
         fields=['hobbies','skills','about']
+
+class AttendanceForm(forms.ModelForm):
+    class Meta:
+        model=Attendance
+        fields=['date','time_in','time_out']
+
+class ProfilePic(forms.ModelForm):
+    class Meta:
+        model=employee_detail
+        fields=['profile_picture']

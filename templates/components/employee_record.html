@@ -39,6 +39,28 @@
                         <td>:</td>
                         <td>{{employee_record.departmentName}}</td>
                     </tr>
+                    <tr>
+                        <td>Hobbies</td>
+                        <td>:</td>
+                        <td>{{info.hobbies}}</td>
+                    </tr>
+                    <tr>
+                        <td>Skill</td>
+                        <td>:</td>
+                        <td>{{info.skills}}</td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                                <td>:</td>
+                                {% if info.about == "Busy"%}
+                                <td><b style="color: blue;">{{info.about}}<b></td>
+                                {% elif info.about == "DND" %}
+                                <td><b style="color: red;">{{info.about}}<b></td>
+                                {%else%}
+                                <td><b style="color: green;">{{info.about}}<b></td>
+                                {% endif%}
+                    </tr>
+                </h3>
                 </tbody>
             </table>
         </div>

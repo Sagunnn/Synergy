@@ -1,57 +1,152 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="profile-container">
-<div class="profile-left-side">
-    <div class="main-profile">
-        <h2>IDENTITY</h2>
-        <div class="card-profile">
-            <div class="card-body">
-                <i class="fa fa-pen fa-xs edit"></i>
-                <table cellspacing="3" >
-                    <tbody>
-                        <tr>
-                            <td>Name</td>
-                            <td>:</td>
-                            <td >{{obj.get_full_name}}</td>
-                            <td rowspan="6" colspan="2"><img src="{{ obj.profile_picture.url }}" alt="Profile Picture" class="profile_img"></td>
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td>:</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Address</td>
-                            <td>:</td>
-                            <td>{{obj.address}}</td>
-                        </tr>
-                        <tr>
-                            <td>Hobbies</td>
-                            <td>:</td>
-                            <td>{{info.hobbies}}</td>
-                        </tr>
-                        <tr>
-                            <td>Job</td>
-                            <td>:</td>
-                            <td>Web Developer</td>
-                        </tr>
-                        <tr>
-                            <td>Skill</td>
-                            <td>:</td>
-                            <td>{{info.skills}}</td>
-                        </tr>
-                        <tr>
-                            <td>About</td>
-                            <td>:</td>
-                            <td>{{info.about}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+<style>
+    .main-x{
+        background-color: rgb(228, 228, 228);
+        padding:25px;
+        grid-area: main;
+        display:grid;
+        grid-template-columns: 1fr 1fr ;
+        grid-template-rows: 1fr 1fr ;
+        gap:20px;
+        grid-template-areas: 
+        "c1 c2"
+        "c3 c4"
+        "c5 c5"
+        "c5 c5";
+    }
+    
+    .order-card {
+        color: #fff;
+    }
+    
+    .bg-c-blue {
+        background: grey;
+    }
+    
+    .bg-c-green {
+        background: 
+    }
+    
+    .bg-c-yellow {
+        background: linear-gradient(45deg,#FFB64D,#ffcb80);
+    }
+    
+    .bg-c-pink {
+        background: linear-gradient(45deg,#FF5370,#ff869a);
+    }
+    
+    
+    .card {
+        border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+        box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+        border: none;
+        margin-bottom: 30px;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        height:auto;
+    }
+    
+    .card .card-block {
+        padding: 25px;
+    }
+    
+    .order-card i {
+        font-size: 26px;
+    }
+    
+    .f-left {
+        float: left;
+    }
+    
+    .f-right {
+        float: right;
+    }
+</style>
+<div class="container">
+       
+    <div class="main-x">
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-blue order-card">
+                <div class="card-block">
+                    <h3>
+                    <table cellspacing="3" >
+                        <tbody>
+                            <tr>
+                                <td>Name</td>
+                                <td>:</td>
+                                <td >{{obj.get_full_name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>:</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Address</td>
+                                <td>:</td>
+                                <td>{{obj.address}}</td>
+                            </tr>
+                            <tr>
+                                <td>Phone Number</td>
+                                <td>:</td>
+                                <td>{{obj.phone_number}}</td>
+                            </tr>
+                            <tr>
+                                <td>Position</td>
+                                <td>:</td>
+                                <td>{{obj.positionName}}</td>
+                            </tr>
+                            <tr>
+                                <td>Department</td>
+                                <td>:</td>
+                                <td>{{obj.departmentName}}</td>
+                            </tr>
+                            <tr>
+                                <td>Hobbies</td>
+                                <td>:</td>
+                                <td>{{info.hobbies}}</td>
+                            </tr>
+                            <tr>
+                                <td>Skill</td>
+                                <td>:</td>
+                                <td>{{info.skills}}</td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td>:</td>
+                                {% if info.about == "Busy"%}
+                                <td><b style="color: blue;">{{info.about}}<b></td>
+                                {% elif info.about == "DND" %}
+                                <td><b style="color: red;">{{info.about}}<b></td>
+                                {%else%}
+                                <td><b style="color: green;">{{info.about}}<b></td>
+                                {% endif%}
+                            </tr>
+                        </h3>
+                        
+                        </tbody>
+                        
+                    </table>
+                    
+                </div>
+            </div>
+            <a href= "{% url 'profile_update'%}"><button class="button-9">Update Profile Info</button></a>
+        </div>
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-green order-card">
+                <div class="card-block">
+                    <a href= "{% url 'change_profile'%}"><img src="{{ obj.profile_picture.url }}" alt="Profile Picture" class="profile_img"></a>
+
+                    
+                </div>
             </div>
         </div>
     </div>
-<div class="profile-right-side">
+
+    
 </div>
 </div>
 {% endblock %}

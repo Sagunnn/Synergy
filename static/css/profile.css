@@ -52,10 +52,14 @@
 }
 
 .profile img {
-    border-radius: 50%;
+    border-radius: 0;
     box-shadow: 0px 0px 5px 1px grey;
 }
+.profile_img:hover  {
+    transform: scale(1.1);
+}
 
+  
 .name {
     font-size: 20px;
     font-weight: bold;
@@ -117,7 +121,7 @@
     background-color: #fff;
     border-radius: 18px;
     box-shadow: 1px 1px 8px 0 grey;
-    height: auto;
+    height: 400px;
     margin-bottom: 20px;
     padding: 20px 0 20px 50px;
 }
@@ -125,7 +129,7 @@
 .main-profile .card-profile table {
     border: none;
     font-size: 16px;
-    height: 270px;
+    height: auto;
     width: 80%;
 }
 

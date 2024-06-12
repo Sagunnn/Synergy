@@ -5,7 +5,7 @@
     {% if request.user.role == "ADMIN" or request.user.role == "HR" %}
     <ul name="create" style="font-family: poppins, sans-serif; font-size: 0.88rem;">
         <li><a href="{%url 'employees'%}" {% if  request.path == '/employees/' %}class="active"{% endif %}><h3>Employees</h3></a></li>
-        <li><a href="{% url 'employee_create'%}" {% if '/employee_create/' in request.path %}class="active"{% endif %}><h3>Create Employee</h3></a></li>
+        <li><a href="{% url 'employee_create' %}" {% if '/employee_create/' in request.path %}class="active"{% endif %}><h3>Create Employee</h3></a></li>
         <li><a href="{% url 'users'%}"{% if '/users/' in request.path %}class="active"{% endif %}><h3>Users</h3></a></li>
         <li><a href="{% url 'user_create'%}"{% if '/user_create/' in request.path %}class="active"{% endif %}><h3>Create User</h3></a></li>
     </ul>
@@ -19,6 +19,7 @@
     <thead>
         <tr>
             <th>EMP_ID</th>
+            <th>Username</th>
             <th>EMP_NAME</th>
             <th>POSITION</th>
             <th>DEPARTMENT</th>
@@ -36,6 +37,7 @@
         {% for emp in objs %}
         <tr>
             <td><a href= "{% url 'employee_record' emp.empId %}">{{emp.empId}}</a></td>
+            <td>{{emp.user}}</td>
             <td>{{emp.get_full_name}}</td>
             <td>{{emp.positionName}}</td>
             <td>{{emp.departmentName}}</td>
@@ -49,10 +51,7 @@
             <a href= "{% url 'update_record' emp.empId %}">Update</a>
         </td>
         <td>
-            <form method="post" action="{% url 'employees' %}">
-                {% csrf_token %}
-                <button type="submit" name="Delete" value="{{ emp.user }}">Delete</button>
-            </form>
+            <a href="{% url 'employee_delete' emp.empId %}" class="delete-employee">Delete</a>
         </td>
         {% endif %}
     </tr>

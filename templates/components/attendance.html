@@ -1,0 +1,46 @@
+
+{% extends 'base.html' %}
+
+{% block navbar %}
+    <ul name="create" style="font-family: poppins, sans-serif; font-size: 0.88rem;">
+        <li><a href="{%url 'attendance'%}" {% if  request.path == '/attendance/' and not request.GET.status %}class="active"{% endif %}><h3>Attendance</h3></a></li>
+        <li> <a href="?status=personal" {% if request.GET.status == 'personal' %}class="active"{% endif %}><h3>Personal</h3></a></li>
+        <li><a href="{%url 'attendanceForm'%}" {% if  request.path == '/attendance/attendanceForm' %}class="active"{% endif %}><h3>Clock In/Clock Out</h3></a></li>
+    </ul>
+{% endblock navbar %}
+    
+{% block content %}    
+<h2>Attendance</h2><br><br>
+
+<table id="tb">
+    <thead>
+        <tr>
+            <th>EMP_ID</th>
+            <th>EMP_NAME</th>
+            <th>Date</th>
+            <th>Clock In</th>
+            <th>Clock Out</th>
+            <th>Duration</th>
+            <th colspan="1"> Actions </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for ob in objs %}
+        <tr>
+            <td>{{ob.user.employee_detail.empId}}</td>
+            <td>{{ob.user.employee_detail.get_full_name}}</td>
+            <td>{{ob.date}}</td>
+            <td>{{ob.time_in}}</td>
+            <td>{{ob.time_out}}</td>       
+            <td>{{ob.duration}}</td>  
+            {% if user.role == "ADMIN" or user.role == "HR"%}  
+            <td><a href="{% url 'delete_attendance' ob.id %}">Delete</a></td>
+            {% endif %}
+            {% if status == 'personal'%}
+            <td><a href="{% url 'delete_attendance' ob.id %}">Delete</a></td>
+            {% endif %}
+            
+    </tr>
+{% endfor %}
+</table>
+{% endblock%}

@@ -30,12 +30,8 @@
         <td>
             <a href= "{% url 'update_department' department.departmentName %}">Update</a>
         </td>
-        <td>
-            <form method="post" action="{% url 'departments' %}">
-                {% csrf_token %}
-                <button type="submit" name="Delete" value="{{ department.departmentName }}">Delete</button>
-            </form>
-        </td>
+        <td><a href="{% url 'delete_department' department.departmentName %}">Delete</a></td>
+        
         {% endif %}
         </tr>
     {% endfor %}

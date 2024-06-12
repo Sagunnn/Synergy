@@ -1,0 +1,13 @@
+
+{% extends 'base.html' %}
+
+{% block content %}    
+
+<div class="card-form">
+<form method="post">
+{% csrf_token %}
+    <label>Do you want to delete {{employee.firstName}}?</label><br><br><br>
+    <button type="submit" value="Delete" class='button-9'>Delete</button>
+</form>
+</div>
+{% endblock %}

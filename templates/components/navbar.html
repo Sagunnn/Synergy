@@ -20,7 +20,12 @@
             <a href="{% url 'departments' %}"{% if '/departments/' in request.path %}class="active"{% endif %}>
                 <span class="material-symbols-outlined">spoke</span>
                     <h2>Departments</h2>
-            </a>    
+            </a>   
+            <a href="{% url 'attendance' %}"{% if request.path == '/attendance/' %}class="active"{% endif %}>
+                <span class="material-symbols-outlined">
+                    co_present</span>
+                    <h2>Attendance</h2>
+            </a> 
             <a href="{% url 'leaves' %}"{% if request.path == '/leaves/' %}class="active"{% endif %}>
                 <span class="material-symbols-outlined">pending_actions</span>
                     <h2>Leaves</h2>
@@ -29,6 +34,7 @@
                 <span class="material-symbols-outlined">edit_calendar</span>
                     <h2>Apply for leave</h2>
             </a>       
+            
             <a href="{%url 'logout'%}">
                 <span class="material-symbols-outlined">logout</span>
                     <h2>Logout</h2>

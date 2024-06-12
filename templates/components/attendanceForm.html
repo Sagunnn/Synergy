@@ -1,0 +1,48 @@
+
+{% extends 'base.html' %}
+{% block navbar %}
+    <ul name="create" style="font-family: poppins, sans-serif; font-size: 0.88rem;">
+        <li><a href="{%url 'attendance'%}" {% if  request.path == '/attendance/' %}class="active"{% endif %}><h3><span class="material-symbols-outlined">arrow_back</span></h3></a></li>
+        <li><a href="{%url 'attendanceForm'%}" {% if  request.path == '/attendance/attendanceForm' %}class="active"{% endif %}><h3>ClockIn/ClockOut</h3></a></li>
+    </ul>
+{% endblock navbar %}
+{% block content %}    
+<div class="card-form">
+<form method="post">
+{% csrf_token %}
+<table>
+<tr>
+<td>
+<label for="Date">Date:</label>
+<td>
+<input type="date" id="date" name="date" required>
+<button type="button" onclick="showDatePicker('Date')"><br><br><br>
+</td></tr><tr><td>
+    <label for="time_in">Time In:</label></td>
+    <td>
+    <input type="time" id="time_in" name="time_in" required>
+    <button type="button" onclick="showTimePicker('time_in')">
+    </button><br><br></td></tr>
+    <tr>
+    <td>
+    <label for="time_out">Time Out:</label></td>
+    <td>
+    <input type="time" id="time_out" name="time_out">
+    </td></tr>
+    <tr><td colspan="2"><br><br>
+    <button type="submit" value="Submit" class='button-9'>Submit</button></td></tr>
+</form>
+</div>
+<script>
+    function showTimePicker(inputId) {
+      var input = document.getElementById(inputId);
+      input.type = 'time';
+      input.focus();
+    }
+    function showDatePicker(inputId) {
+        var input = document.getElementById(inputId);
+        input.type = 'date';
+        input.focus();
+      }
+  </script>
+{% endblock %}

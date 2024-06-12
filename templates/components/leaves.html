@@ -13,13 +13,7 @@
     
 {% block content %}   
 
-{%if messages %}
-                {%for message in messages%}
-                <div class="alert alert-danger" style="font-size:20px;"role="alert">
-                  {{message}}.
-                </div>
-                {% endfor %}
-            {% endif %} 
+
 <table id="tb">
     <thead>
         <tr>
@@ -50,7 +44,9 @@
             <td>{{leaves.reason}}</td>
             <td>{{leaves.status}}</td>
             {%if request.user.role == 'ADMIN' or request.user.role == 'HR'%}
+            {%if status != 'archived'%}
             <td><a href= "{% url 'leave_approval' leaves.leave_id %}">Change Status</a></td>
+            {% endif %}
             {% endif %}
         </tr>
         {% endif %}
